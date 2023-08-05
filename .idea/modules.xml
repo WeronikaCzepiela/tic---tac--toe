@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Tic-Tac-Toe.iml" filepath="$PROJECT_DIR$/.idea/Tic-Tac-Toe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bmi-calculator/.idea/bmi-calculator.iml" filepath="$PROJECT_DIR$/../bmi-calculator/.idea/bmi-calculator.iml" />
     </modules>
   </component>
 </project>
