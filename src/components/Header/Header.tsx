@@ -1,4 +1,3 @@
-import './Header.styles'
 import {HeaderStyled} from "./Header.styles";
 
 export const Header = () => {

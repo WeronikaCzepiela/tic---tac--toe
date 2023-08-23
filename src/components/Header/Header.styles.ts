@@ -9,7 +9,9 @@ export const HeaderStyled = styled.header`
   justify-content: center;
   font-size: 40px;
   color: white;
-  //drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  margin-top: 28px;
   p {
     margin: 0;
     align-self: center;
