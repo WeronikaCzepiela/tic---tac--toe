@@ -1,4 +1,4 @@
-import { GameItemStyled } from './GameItem.style'
+import { GameItemStyled } from './GameItem.styles'
 import XIcon from  '../../image/x.svg'
 import OIcon from '../../image/o.svg'
 import { GameItemTypes} from "./GameItem.types";
