@@ -22,7 +22,6 @@ export const Middle = () => {
         return newGameBoard
     }
 
-    console.log('I have worked for HumanIT today')
     const humanMove = () => {
         return {GameItem}
     }
