@@ -1,6 +1,10 @@
 
+export enum GameItemType {
+    EMPTY= 'empty',
+    CIRCLE = 'circle',
+    CROSS = 'cross'
+}
 export interface GameItemTypes {
-    isClicked: boolean
-    isHumanMove: boolean
     id: number
+    type: GameItemType
 }
