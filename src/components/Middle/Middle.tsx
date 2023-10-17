@@ -8,7 +8,7 @@ export const Middle = () => {
 
     const [gameBoard, setGameBoard] = useState(Array.from({length: 9}).map((item, idx) => ({
         id: idx,
-        type: GameItemType.EMPTY
+        type: GameItemType.CIRCLE
     })))
 
     const onItemClick = (id: number) => {
