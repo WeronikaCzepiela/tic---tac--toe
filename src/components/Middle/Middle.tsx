@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { GameItemType } from '../GameItem/GameItem.types'
 import { computerMove, emptySquareInBoard, humanMove, idItemToChange } from './Middle.helpers'
 
-export const Middle = () => {
-  const [count, setCount] = useState(0)
+let isGameBlocked = false
 
+export const Middle = () => {
   const [gameBoard, setGameBoard] = useState(
     Array.from({ length: 9 }).map((item, idx) => ({
       id: idx,
@@ -15,17 +15,23 @@ export const Middle = () => {
   )
 
   const onItemClick = (id: number) => {
-    const boardAfterHumanMove = humanMove(gameBoard, id)
-    const emptyElementsInBoard = emptySquareInBoard(boardAfterHumanMove)
-    const randomId = idItemToChange(emptyElementsInBoard)
+    if (isGameBlocked) return
 
-    let boardAfterComputerMove = boardAfterHumanMove
-
-    if (emptyElementsInBoard.length) {
-      boardAfterComputerMove = computerMove(boardAfterHumanMove, randomId)
+    if (emptySquareInBoard(gameBoard).length) {
+      isGameBlocked = true
+      const boardAfterHumanMove = humanMove(gameBoard, id)
+      setGameBoard(boardAfterHumanMove)
+      const emptyElementsInBoard = emptySquareInBoard(boardAfterHumanMove)
+      let boardAfterComputerMove = boardAfterHumanMove
+      if (emptyElementsInBoard.length) {
+        setTimeout(() => {
+          const randomId = idItemToChange(emptyElementsInBoard)
+          boardAfterComputerMove = computerMove(boardAfterHumanMove, randomId)
+          setGameBoard(boardAfterComputerMove)
+          isGameBlocked = false
+        }, 1000)
+      }
     }
-
-    setGameBoard(boardAfterComputerMove)
   }
 
   return (
