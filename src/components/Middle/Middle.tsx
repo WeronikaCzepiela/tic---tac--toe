@@ -7,6 +7,7 @@ import {
   emptySquareInBoard,
   humanMove,
   idItemToChange,
+  isTheGameFinish,
   resetGameBoard,
 } from './Middle.helpers'
 
@@ -37,8 +38,9 @@ export const Middle = () => {
         }, 1000)
       }
     }
-    if (emptySquareInBoard(gameBoard).length === 1) {
-      setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1000)
+    console.log(gameBoard)
+    if (emptySquareInBoard(gameBoard).length === 1 || isTheGameFinish(gameBoard)) {
+      setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1500)
     }
   }
 
