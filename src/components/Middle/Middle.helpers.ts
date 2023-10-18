@@ -26,6 +26,15 @@ export const computerMove = (gameBoard: GameBoardTypes, id: number) => {
   })
 }
 
+export const resetGameBoard = (gameBoard: GameBoardTypes) => {
+  return gameBoard.map((item) => {
+    return {
+      ...item,
+      type: GameItemType.EMPTY,
+    }
+  })
+}
+
 export const emptySquareInBoard = (gameBoard: GameBoardTypes) =>
   gameBoard.filter((item) => item.type === GameItemType.EMPTY)
 

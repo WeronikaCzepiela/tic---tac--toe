@@ -2,7 +2,13 @@ import { MiddleStyled } from './Middle.styles'
 import { GameItem } from '../GameItem/GameItem'
 import { useState } from 'react'
 import { GameItemType } from '../GameItem/GameItem.types'
-import { computerMove, emptySquareInBoard, humanMove, idItemToChange } from './Middle.helpers'
+import {
+  computerMove,
+  emptySquareInBoard,
+  humanMove,
+  idItemToChange,
+  resetGameBoard,
+} from './Middle.helpers'
 
 let isGameBlocked = false
 
@@ -16,7 +22,6 @@ export const Middle = () => {
 
   const onItemClick = (id: number) => {
     if (isGameBlocked) return
-
     if (emptySquareInBoard(gameBoard).length) {
       isGameBlocked = true
       const boardAfterHumanMove = humanMove(gameBoard, id)
@@ -31,6 +36,9 @@ export const Middle = () => {
           isGameBlocked = false
         }, 1000)
       }
+    }
+    if (emptySquareInBoard(gameBoard).length === 1) {
+      setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1000)
     }
   }
 
