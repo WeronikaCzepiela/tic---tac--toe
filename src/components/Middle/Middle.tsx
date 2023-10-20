@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { GameItemType } from '../GameItem/GameItem.types'
 import {
   computerMove,
+  crossSquareInBoard,
   emptySquareInBoard,
   humanMove,
   idItemToChange,
@@ -23,9 +24,9 @@ export const Middle = () => {
 
   const onItemClick = (id: number) => {
     if (isGameBlocked) return
+    const boardAfterHumanMove = humanMove(gameBoard, id)
     if (emptySquareInBoard(gameBoard).length) {
       isGameBlocked = true
-      const boardAfterHumanMove = humanMove(gameBoard, id)
       setGameBoard(boardAfterHumanMove)
       const emptyElementsInBoard = emptySquareInBoard(boardAfterHumanMove)
       let boardAfterComputerMove = boardAfterHumanMove
@@ -38,8 +39,9 @@ export const Middle = () => {
         }, 1000)
       }
     }
-    console.log(gameBoard)
-    if (emptySquareInBoard(gameBoard).length === 1 || isTheGameFinish(gameBoard)) {
+
+    const crossIdArray = crossSquareInBoard(boardAfterHumanMove)
+    if (emptySquareInBoard(gameBoard).length === 1 || isTheGameFinish(crossIdArray)) {
       setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1500)
     }
   }

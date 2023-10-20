@@ -42,10 +42,23 @@ export const idItemToChange = (emptyElementsInBoard: GameBoardTypes) => {
   return emptyElementsInBoard[Math.floor(Math.random() * emptyElementsInBoard.length)].id
 }
 
-export const isTheGameFinish = (gameBoard: GameBoardTypes) => {
-  // if (humanWin)
-  // return true
-  // if (computerWin) return true
+export const crossSquareInBoard = (gameBoard: GameBoardTypes) => {
+  return gameBoard
+    .filter((item) => item.type === GameItemType.CROSS)
+    .map((item) => {
+      return item.id
+    })
+}
+
+export const circleSquareInBoard = (gameBoard: GameBoardTypes) =>
+  gameBoard
+    .filter((item) => item.type === GameItemType.CIRCLE)
+    .map((item) => {
+      return item.id
+    })
+
+export const isTheGameFinish = (crossIdArray: Array<number>) => {
+  console.log(crossIdArray)
   return false
 }
 
