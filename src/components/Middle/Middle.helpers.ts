@@ -1,7 +1,7 @@
 import { GameItemType } from '../GameItem/GameItem.types'
 
 type GameBoardTypes = Array<{ id: number; type: GameItemType }>
-type WinningIdsTypes = Array<{ id1: number; id2: number; id3: number }>
+
 export const humanMove = (gameBoard: GameBoardTypes, id: number) => {
   return gameBoard.map((item, idx) => {
     if (item.id === id)
@@ -62,10 +62,10 @@ export const isTheGameFinish = (crossIdArray: Array<number>) => {
   return false
 }
 
-const tableWithWinningsPoints: WinningIdsTypes = [
-  { id1: 0, id2: 1, id3: 2 },
-  { id1: 3, id2: 4, id3: 5 },
-  { id1: 6, id2: 7, id3: 8 },
-  { id1: 0, id2: 4, id3: 8 },
-  { id1: 2, id2: 4, id3: 6 },
+const tableWithWinningsPoints = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ]
