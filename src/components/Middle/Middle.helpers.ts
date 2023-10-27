@@ -1,4 +1,5 @@
 import { GameItemType } from '../GameItem/GameItem.types'
+import { tableWithWinningsPoints } from './Middle.const'
 
 type GameBoardTypes = Array<{ id: number; type: GameItemType }>
 
@@ -57,7 +58,7 @@ export const circleSquareInBoard = (gameBoard: GameBoardTypes) =>
       return item.id
     })
 
-export const isTheGameFinish = (crossIdArray: Array<number>) => {
+export const areTheElementsCorrect = (crossIdArray: Array<number>) => {
   let hasAllElements: boolean = false
   if (crossIdArray.length < 3) return false
   for (let i = 0; i <= 4; i++) {
@@ -68,10 +69,9 @@ export const isTheGameFinish = (crossIdArray: Array<number>) => {
   return false
 }
 
-const tableWithWinningsPoints = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-]
+const isTheGameFinish = (crossIdArray: Array<number>, circleArray: Array<number>) => {
+  if (areTheElementsCorrect(crossIdArray)) return true
+  if (areTheElementsCorrect(circleArray)) return true
+
+  return false
+}
