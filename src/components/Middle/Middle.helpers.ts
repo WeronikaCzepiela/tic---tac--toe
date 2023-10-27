@@ -51,12 +51,13 @@ export const crossSquareInBoard = (gameBoard: GameBoardTypes) => {
     })
 }
 
-export const circleSquareInBoard = (gameBoard: GameBoardTypes) =>
-  gameBoard
+export const circleSquareInBoard = (gameBoard: GameBoardTypes) => {
+  return gameBoard
     .filter((item) => item.type === GameItemType.CIRCLE)
     .map((item) => {
       return item.id
     })
+}
 
 export const areTheElementsCorrect = (crossIdArray: Array<number>) => {
   let hasAllElements: boolean = false
@@ -69,9 +70,6 @@ export const areTheElementsCorrect = (crossIdArray: Array<number>) => {
   return false
 }
 
-const isTheGameFinish = (crossIdArray: Array<number>, circleArray: Array<number>) => {
-  if (areTheElementsCorrect(crossIdArray)) return true
-  if (areTheElementsCorrect(circleArray)) return true
-
-  return false
+export const isTheGameFinish = (crossIdArray: Array<number>, circleArray: Array<number>) => {
+  return areTheElementsCorrect(crossIdArray) || areTheElementsCorrect(circleArray)
 }

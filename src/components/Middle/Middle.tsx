@@ -3,6 +3,8 @@ import { GameItem } from '../GameItem/GameItem'
 import { useState } from 'react'
 import { GameItemType } from '../GameItem/GameItem.types'
 import {
+  areTheElementsCorrect,
+  circleSquareInBoard,
   computerMove,
   crossSquareInBoard,
   emptySquareInBoard,
@@ -25,23 +27,27 @@ export const Middle = () => {
   const onItemClick = (id: number) => {
     if (isGameBlocked) return
     const boardAfterHumanMove = humanMove(gameBoard, id)
+    if (areTheElementsCorrect(crossSquareInBoard(boardAfterHumanMove))) {
+      setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1100)
+    }
+    let boardAfterComputerMove = boardAfterHumanMove
     if (emptySquareInBoard(gameBoard).length) {
       isGameBlocked = true
       setGameBoard(boardAfterHumanMove)
       const emptyElementsInBoard = emptySquareInBoard(boardAfterHumanMove)
-      let boardAfterComputerMove = boardAfterHumanMove
       if (emptyElementsInBoard.length) {
         setTimeout(() => {
           const randomId = idItemToChange(emptyElementsInBoard)
           boardAfterComputerMove = computerMove(boardAfterHumanMove, randomId)
           setGameBoard(boardAfterComputerMove)
+          if (areTheElementsCorrect(circleSquareInBoard(boardAfterComputerMove))) {
+            setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1000)
+          }
           isGameBlocked = false
         }, 1000)
       }
     }
-
-    const crossIdArray = crossSquareInBoard(boardAfterHumanMove)
-    if (emptySquareInBoard(gameBoard).length === 1 || isTheGameFinish(crossIdArray)) {
+    if (emptySquareInBoard(gameBoard).length === 1) {
       setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1500)
     }
   }
