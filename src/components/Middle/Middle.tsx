@@ -10,7 +10,6 @@ import {
   emptySquareInBoard,
   humanMove,
   idItemToChange,
-  isTheGameFinish,
   resetGameBoard,
 } from './Middle.helpers'
 

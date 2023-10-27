@@ -69,7 +69,3 @@ export const areTheElementsCorrect = (crossIdArray: Array<number>) => {
 
   return false
 }
-
-export const isTheGameFinish = (crossIdArray: Array<number>, circleArray: Array<number>) => {
-  return areTheElementsCorrect(crossIdArray) || areTheElementsCorrect(circleArray)
-}
