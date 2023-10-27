@@ -58,21 +58,12 @@ export const circleSquareInBoard = (gameBoard: GameBoardTypes) =>
     })
 
 export const isTheGameFinish = (crossIdArray: Array<number>) => {
-  let filteredArray: Array<number> = [9]
-  // if (crossIdArray.length < 3) return false
+  let hasAllElements: boolean = false
+  if (crossIdArray.length < 3) return false
   for (let i = 0; i <= 4; i++) {
-    filteredArray = tableWithWinningsPoints[i]
-      .filter((value) => {
-        crossIdArray.includes(value)
-      })
-      .map((item) => {
-        return item
-      })
-    // console.log(tableWithWinningsPoints[i])
-    // console.log(crossIdArray)
+    hasAllElements = tableWithWinningsPoints[i].every((elem) => crossIdArray.includes(elem))
+    if (hasAllElements) return true
   }
-  // console.log(crossIdArray)
-  // console.log(filteredArray)
 
   return false
 }
