@@ -69,3 +69,5 @@ export const areTheElementsCorrect = (crossIdArray: Array<number>) => {
 
   return false
 }
+
+const animation = () => {}
