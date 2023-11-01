@@ -1,5 +1,5 @@
 import { GameItemType } from '../GameItem/GameItem.types'
-import { tableWithWinningsPoints } from './Middle.const'
+import { WINNING_POINT_COMBINATIONS } from './Middle.const'
 
 type GameBoardTypes = Array<{ id: number; type: GameItemType }>
 
@@ -27,23 +27,21 @@ export const computerMove = (gameBoard: GameBoardTypes, id: number) => {
   })
 }
 
-export const resetGameBoard = (gameBoard: GameBoardTypes) => {
-  return gameBoard.map((item) => {
-    return {
-      ...item,
-      type: GameItemType.EMPTY,
-    }
-  })
+export const createNewGameBoard = () => {
+  return Array.from({ length: 9 }).map((item, idx) => ({
+    id: idx,
+    type: GameItemType.EMPTY,
+  }))
 }
 
-export const emptySquareInBoard = (gameBoard: GameBoardTypes) =>
+export const emptySquaresOnTheBoard = (gameBoard: GameBoardTypes) =>
   gameBoard.filter((item) => item.type === GameItemType.EMPTY)
 
-export const idItemToChange = (emptyElementsInBoard: GameBoardTypes) => {
+export const getSquareIdToMark = (emptyElementsInBoard: GameBoardTypes) => {
   return emptyElementsInBoard[Math.floor(Math.random() * emptyElementsInBoard.length)].id
 }
 
-export const crossSquareInBoard = (gameBoard: GameBoardTypes) => {
+export const getCrossSquareInBoard = (gameBoard: GameBoardTypes) => {
   return gameBoard
     .filter((item) => item.type === GameItemType.CROSS)
     .map((item) => {
@@ -51,7 +49,7 @@ export const crossSquareInBoard = (gameBoard: GameBoardTypes) => {
     })
 }
 
-export const circleSquareInBoard = (gameBoard: GameBoardTypes) => {
+export const getCircleSquareInBoard = (gameBoard: GameBoardTypes) => {
   return gameBoard
     .filter((item) => item.type === GameItemType.CIRCLE)
     .map((item) => {
@@ -59,11 +57,12 @@ export const circleSquareInBoard = (gameBoard: GameBoardTypes) => {
     })
 }
 
-export const areTheElementsCorrect = (crossIdArray: Array<number>) => {
+export const checkIfPlayerWonTheGame = (crossIdArray: Array<number>) => {
   let hasAllElements: boolean = false
   if (crossIdArray.length < 3) return false
-  for (let i = 0; i <= 4; i++) {
-    hasAllElements = tableWithWinningsPoints[i].every((elem) => crossIdArray.includes(elem))
+  for (let i = 0; i <= 7; i++) {
+    //TODO replace 'for' with 'forEach'
+    hasAllElements = WINNING_POINT_COMBINATIONS[i].every((elem) => crossIdArray.includes(elem))
     if (hasAllElements) return true
   }
 

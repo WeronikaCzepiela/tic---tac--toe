@@ -1,53 +1,56 @@
 import { MiddleStyled } from './Middle.styles'
 import { GameItem } from '../GameItem/GameItem'
 import { useState } from 'react'
-import { GameItemType } from '../GameItem/GameItem.types'
 import {
-  areTheElementsCorrect,
-  circleSquareInBoard,
+  checkIfPlayerWonTheGame,
   computerMove,
-  crossSquareInBoard,
-  emptySquareInBoard,
+  createNewGameBoard,
+  emptySquaresOnTheBoard,
+  getCircleSquareInBoard,
+  getCrossSquareInBoard,
+  getSquareIdToMark,
   humanMove,
-  idItemToChange,
-  resetGameBoard,
 } from './Middle.helpers'
+import { ANIMATION_TIME } from './Middle.const'
 
 let isGameBlocked = false
 
 export const Middle = () => {
-  const [gameBoard, setGameBoard] = useState(
-    Array.from({ length: 9 }).map((item, idx) => ({
-      id: idx,
-      type: GameItemType.EMPTY,
-    })),
-  )
+  const [gameBoard, setGameBoard] = useState(createNewGameBoard())
 
-  const onItemClick = (id: number) => {
+  const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
-    const boardAfterHumanMove = humanMove(gameBoard, id)
-    if (areTheElementsCorrect(crossSquareInBoard(boardAfterHumanMove))) {
-      setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1100)
+    isGameBlocked = true
+    const boardAfterHumanMove = humanMove(gameBoard, fieldId)
+    if (checkIfPlayerWonTheGame(getCrossSquareInBoard(boardAfterHumanMove))) {
+      setTimeout(() => {
+        setGameBoard(createNewGameBoard())
+        isGameBlocked = false
+      }, ANIMATION_TIME)
+      return setGameBoard(boardAfterHumanMove)
     }
-    let boardAfterComputerMove = boardAfterHumanMove
-    if (emptySquareInBoard(gameBoard).length) {
-      isGameBlocked = true
+    const emptyElementsInBoard = emptySquaresOnTheBoard(boardAfterHumanMove)
+    if (emptyElementsInBoard.length) {
       setGameBoard(boardAfterHumanMove)
-      const emptyElementsInBoard = emptySquareInBoard(boardAfterHumanMove)
-      if (emptyElementsInBoard.length) {
-        setTimeout(() => {
-          const randomId = idItemToChange(emptyElementsInBoard)
-          boardAfterComputerMove = computerMove(boardAfterHumanMove, randomId)
-          setGameBoard(boardAfterComputerMove)
-          if (areTheElementsCorrect(circleSquareInBoard(boardAfterComputerMove))) {
-            setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1000)
-          }
-          isGameBlocked = false
-        }, 1000)
-      }
+
+      setTimeout(() => {
+        const boardAfterComputerMove = computerMove(
+          boardAfterHumanMove,
+          getSquareIdToMark(emptyElementsInBoard),
+        )
+        setGameBoard(boardAfterComputerMove)
+        if (checkIfPlayerWonTheGame(getCircleSquareInBoard(boardAfterComputerMove))) {
+          setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
+        }
+        isGameBlocked = false
+      }, ANIMATION_TIME)
     }
-    if (emptySquareInBoard(gameBoard).length === 1) {
-      setTimeout(() => setGameBoard(resetGameBoard(gameBoard)), 1500)
+    console.log(emptySquaresOnTheBoard(gameBoard).length)
+    if (!emptySquaresOnTheBoard(gameBoard).length) {
+      setTimeout(() => {
+        setGameBoard(createNewGameBoard())
+        isGameBlocked = false
+      }, ANIMATION_TIME)
     }
   }
 
