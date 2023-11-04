@@ -59,10 +59,9 @@ export const getCircleSquareInBoard = (gameBoard: GameBoardTypes) => {
 
 export const checkIfPlayerWonTheGame = (crossIdArray: Array<number>) => {
   if (crossIdArray.length < 3) return false
-  //for (let i = 0; i <= 7; i++) {
-    //TODO replace 'for' with 'forEach'
+  
     return WINNING_POINT_COMBINATIONS.forEach().every((elem) => crossIdArray.includes(elem))
-  //}
+
 }
 
 const animation = () => {}
