@@ -45,7 +45,7 @@ export const Middle = () => {
         isGameBlocked = false
       }, ANIMATION_TIME)
     }
-    console.log(emptySquaresOnTheBoard(gameBoard).length)
+
     if (!emptySquaresOnTheBoard(gameBoard).length) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
