@@ -1,5 +1,5 @@
 import { GameItemType } from '../GameItem/GameItem.types'
-import { WINNING_POINT_COMBINATIONS } from './Middle.const'
+import { ANIMATION_TIME, WINNING_POINT_COMBINATIONS } from './Middle.const'
 
 type GameBoardTypes = Array<{ id: number; type: GameItemType }>
 
@@ -41,7 +41,7 @@ export const getSquareIdToMark = (emptyElementsInBoard: GameBoardTypes) => {
   return emptyElementsInBoard[Math.floor(Math.random() * emptyElementsInBoard.length)].id
 }
 
-export const getCrossSquareInBoard = (gameBoard: GameBoardTypes) => {
+export const getCrossSquaresIdInBoard = (gameBoard: GameBoardTypes) => {
   return gameBoard
     .filter((item) => item.type === GameItemType.CROSS)
     .map((item) => {
@@ -49,7 +49,7 @@ export const getCrossSquareInBoard = (gameBoard: GameBoardTypes) => {
     })
 }
 
-export const getCircleSquareInBoard = (gameBoard: GameBoardTypes) => {
+export const getCircleSquaresIdInBoard = (gameBoard: GameBoardTypes) => {
   return gameBoard
     .filter((item) => item.type === GameItemType.CIRCLE)
     .map((item) => {
@@ -67,5 +67,3 @@ export const checkIfPlayerWonTheGame = (crossIdArray: Array<number>) => {
 
   return hasAllElements
 }
-
-const animation = () => {}

@@ -6,8 +6,8 @@ import {
   computerMove,
   createNewGameBoard,
   emptySquaresOnTheBoard,
-  getCircleSquareInBoard,
-  getCrossSquareInBoard,
+  getCircleSquaresIdInBoard,
+  getCrossSquaresIdInBoard,
   getSquareIdToMark,
   humanMove,
 } from './Middle.helpers'
@@ -22,31 +22,37 @@ export const Middle = () => {
     if (isGameBlocked) return
     isGameBlocked = true
     const boardAfterHumanMove = humanMove(gameBoard, fieldId)
-    if (checkIfPlayerWonTheGame(getCrossSquareInBoard(boardAfterHumanMove))) {
+    if (checkIfPlayerWonTheGame(getCrossSquaresIdInBoard(boardAfterHumanMove))) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
         isGameBlocked = false
       }, ANIMATION_TIME)
+
       return setGameBoard(boardAfterHumanMove)
     }
+
     const emptyElementsInBoard = emptySquaresOnTheBoard(boardAfterHumanMove)
+    let boardAfterComputerMove = boardAfterHumanMove
     if (emptyElementsInBoard.length) {
       setGameBoard(boardAfterHumanMove)
 
       setTimeout(() => {
-        const boardAfterComputerMove = computerMove(
+        boardAfterComputerMove = computerMove(
           boardAfterHumanMove,
           getSquareIdToMark(emptyElementsInBoard),
         )
         setGameBoard(boardAfterComputerMove)
-        if (checkIfPlayerWonTheGame(getCircleSquareInBoard(boardAfterComputerMove))) {
+
+        console.log(boardAfterComputerMove)
+
+        if (checkIfPlayerWonTheGame(getCircleSquaresIdInBoard(boardAfterComputerMove))) {
           setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
         }
         isGameBlocked = false
       }, ANIMATION_TIME)
     }
 
-    if (!emptySquaresOnTheBoard(gameBoard).length) {
+    if (!emptySquaresOnTheBoard(boardAfterComputerMove).length) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
         isGameBlocked = false
