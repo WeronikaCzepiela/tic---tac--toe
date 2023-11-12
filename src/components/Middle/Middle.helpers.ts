@@ -1,7 +1,8 @@
 import { GameItemType } from '../GameItem/GameItem.types'
-import { ANIMATION_TIME, WINNING_POINT_COMBINATIONS } from './Middle.const'
+import { WINNING_POINT_COMBINATIONS } from './Middle.const'
 
 type GameBoardTypes = Array<{ id: number; type: GameItemType }>
+type setBoardTypes = (gameBoard: GameBoardTypes) => void
 
 export const humanMove = (gameBoard: GameBoardTypes, id: number) => {
   return gameBoard.map((item, idx) => {
