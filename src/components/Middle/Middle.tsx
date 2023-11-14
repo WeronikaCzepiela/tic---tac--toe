@@ -67,6 +67,7 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
+      <div className={'line'} />
     </MiddleStyled>
   )
 }
