@@ -67,7 +67,10 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
-      <div className={'line'} />
+      <div
+        className={'line'}
+        style={{ transform: `rotate(90deg) translateY(-93px)`, width: `330px` }}
+      />
     </MiddleStyled>
   )
 }

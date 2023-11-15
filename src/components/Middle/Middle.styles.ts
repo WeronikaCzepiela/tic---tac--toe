@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 export const MiddleStyled = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .container {
     display: grid;
     width: 280px;
@@ -19,7 +23,6 @@ export const MiddleStyled = styled.header`
   .line {
     position: absolute;
     justify-content: center;
-    width: 300px;
     height: 5px;
     background-color: #fa7f08;
   }
