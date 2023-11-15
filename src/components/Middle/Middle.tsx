@@ -12,14 +12,12 @@ import {
   getStyleOfLine,
   humanMove,
 } from './Middle.helpers'
-import { ANIMATION_TIME } from './Middle.const'
+import { ANIMATION_TIME, gameBoardMock } from './Middle.const'
 
 let isGameBlocked = false
-let isUserWinTheGame = false
 
 export const Middle = () => {
-  const [gameBoard, setGameBoard] = useState(createNewGameBoard())
-
+  const [gameBoard, setGameBoard] = useState(gameBoardMock)
   const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
     isGameBlocked = true
@@ -27,6 +25,7 @@ export const Middle = () => {
     if (checkIfPlayerWonTheGame(getCrossSquaresIdInBoard(boardAfterHumanMove))) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
+        console.log('dupa1')
         isGameBlocked = false
       }, ANIMATION_TIME)
 
@@ -35,9 +34,10 @@ export const Middle = () => {
 
     const emptyElementsInBoard = emptySquaresOnTheBoard(boardAfterHumanMove)
     let boardAfterComputerMove = boardAfterHumanMove
+    console.log(emptyElementsInBoard.length)
     if (emptyElementsInBoard.length) {
       setGameBoard(boardAfterHumanMove)
-
+      console.log('dupa2')
       setTimeout(() => {
         boardAfterComputerMove = computerMove(
           boardAfterHumanMove,
@@ -45,10 +45,10 @@ export const Middle = () => {
         )
         setGameBoard(boardAfterComputerMove)
 
-        console.log(boardAfterComputerMove)
-
+        console.log('dupa3')
         if (checkIfPlayerWonTheGame(getCircleSquaresIdInBoard(boardAfterComputerMove))) {
           setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
+          console.log('dupa4')
         }
         isGameBlocked = false
       }, ANIMATION_TIME)
@@ -57,6 +57,7 @@ export const Middle = () => {
     if (!emptySquaresOnTheBoard(boardAfterComputerMove).length) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
+        console.log(emptySquaresOnTheBoard(boardAfterComputerMove).length)
         isGameBlocked = false
       }, ANIMATION_TIME)
     }
@@ -69,10 +70,10 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
-      <div
-        className={'line'}
-        style={{ transform: getStyleOfLine(3).transform, width: getStyleOfLine(3).width }}
-      />
+      {/*<div*/}
+      {/*  className={'line'}*/}
+      {/*  style={{ transform: getStyleOfLine(3).transform, width: getStyleOfLine(3).width }}*/}
+      {/*/>*/}
     </MiddleStyled>
   )
 }

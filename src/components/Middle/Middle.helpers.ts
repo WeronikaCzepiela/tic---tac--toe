@@ -1,7 +1,7 @@
 import { GameItemType } from '../GameItem/GameItem.types'
 import { WINNING_POINT_COMBINATIONS } from './Middle.const'
 
-type GameBoardTypes = Array<{ id: number; type: GameItemType }>
+export type GameBoardTypes = Array<{ id: number; type: GameItemType }>
 type setBoardTypes = (gameBoard: GameBoardTypes) => void
 
 export const humanMove = (gameBoard: GameBoardTypes, id: number) => {

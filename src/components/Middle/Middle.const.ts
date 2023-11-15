@@ -1,3 +1,6 @@
+import { GameBoardTypes } from './Middle.helpers'
+import { GameItemType } from '../GameItem/GameItem.types'
+
 export const ANIMATION_TIME = 500
 
 export const WINNING_POINT_COMBINATIONS = [
@@ -41,4 +44,16 @@ export const WINNING_POINT_COMBINATIONS = [
     transform: `rotate(90deg) translateY(-93px)`,
     width: `330px`,
   },
+]
+
+export const gameBoardMock: GameBoardTypes = [
+  { id: 0, type: GameItemType.CROSS },
+  { id: 1, type: GameItemType.CIRCLE },
+  { id: 2, type: GameItemType.EMPTY },
+  { id: 3, type: GameItemType.CROSS },
+  { id: 4, type: GameItemType.CIRCLE },
+  { id: 5, type: GameItemType.EMPTY },
+  { id: 6, type: GameItemType.EMPTY },
+  { id: 7, type: GameItemType.CROSS },
+  { id: 8, type: GameItemType.CIRCLE },
 ]
