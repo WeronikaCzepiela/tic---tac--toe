@@ -15,6 +15,7 @@ import {
 import { ANIMATION_TIME } from './Middle.const'
 
 let isGameBlocked = false
+let isUserWinTheGame = false
 
 export const Middle = () => {
   const [gameBoard, setGameBoard] = useState(createNewGameBoard())
@@ -61,8 +62,6 @@ export const Middle = () => {
     }
   }
 
-  console.log(getStyleOfLine(0, 'transform'))
-
   return (
     <MiddleStyled>
       <div className={'container'}>
@@ -72,7 +71,7 @@ export const Middle = () => {
       </div>
       <div
         className={'line'}
-        style={{ transform: `rotate(90deg) translateY(-93px)`, width: `330px` }}
+        style={{ transform: getStyleOfLine(3).transform, width: getStyleOfLine(3).width }}
       />
     </MiddleStyled>
   )
