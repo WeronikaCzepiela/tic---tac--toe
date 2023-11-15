@@ -9,6 +9,7 @@ import {
   getCircleSquaresIdInBoard,
   getCrossSquaresIdInBoard,
   getSquareIdToMark,
+  getStyleOfLine,
   humanMove,
 } from './Middle.helpers'
 import { ANIMATION_TIME } from './Middle.const'
@@ -59,6 +60,8 @@ export const Middle = () => {
       }, ANIMATION_TIME)
     }
   }
+
+  console.log(getStyleOfLine(0, 'transform'))
 
   return (
     <MiddleStyled>

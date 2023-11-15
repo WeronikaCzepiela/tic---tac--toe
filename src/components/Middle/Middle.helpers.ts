@@ -1,8 +1,9 @@
 import { GameItemType } from '../GameItem/GameItem.types'
-import { WINNING_POINT_COMBINATIONS } from './Middle.const'
+import { WINNING_POINT_COMBINATIONS, WINNING_POINT_COMBINATIONS2 } from './Middle.const'
 
 type GameBoardTypes = Array<{ id: number; type: GameItemType }>
 type setBoardTypes = (gameBoard: GameBoardTypes) => void
+type styleType = ' combination' | 'transform' | 'width'
 
 export const humanMove = (gameBoard: GameBoardTypes, id: number) => {
   return gameBoard.map((item, idx) => {
@@ -68,3 +69,5 @@ export const checkIfPlayerWonTheGame = (crossIdArray: Array<number>) => {
 
   return hasAllElements
 }
+
+export const getStyleOfLine = (id: number, type: styleType) => WINNING_POINT_COMBINATIONS2[id]

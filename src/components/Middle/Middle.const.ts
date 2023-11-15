@@ -11,7 +11,7 @@ export const WINNING_POINT_COMBINATIONS = [
 
 export const ANIMATION_TIME = 500
 
-const WINNING_POINT_COMBINATIONS2 = [
+export const WINNING_POINT_COMBINATIONS2 = [
   {
     combination: [0, 1, 2],
     transform: `translateY(-93px)`,
