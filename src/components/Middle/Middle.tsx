@@ -18,6 +18,7 @@ let isGameBlocked = false
 
 export const Middle = () => {
   const [gameBoard, setGameBoard] = useState(gameBoardMock)
+
   const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
     isGameBlocked = true
@@ -25,7 +26,6 @@ export const Middle = () => {
     if (checkIfPlayerWonTheGame(getCrossSquaresIdInBoard(boardAfterHumanMove))) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
-        console.log('dupa1')
         isGameBlocked = false
       }, ANIMATION_TIME)
 
@@ -34,10 +34,9 @@ export const Middle = () => {
 
     const emptyElementsInBoard = emptySquaresOnTheBoard(boardAfterHumanMove)
     let boardAfterComputerMove = boardAfterHumanMove
-    console.log(emptyElementsInBoard.length)
     if (emptyElementsInBoard.length) {
       setGameBoard(boardAfterHumanMove)
-      console.log('dupa2')
+
       setTimeout(() => {
         boardAfterComputerMove = computerMove(
           boardAfterHumanMove,
@@ -45,10 +44,8 @@ export const Middle = () => {
         )
         setGameBoard(boardAfterComputerMove)
 
-        console.log('dupa3')
         if (checkIfPlayerWonTheGame(getCircleSquaresIdInBoard(boardAfterComputerMove))) {
           setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
-          console.log('dupa4')
         }
         isGameBlocked = false
       }, ANIMATION_TIME)
@@ -61,6 +58,8 @@ export const Middle = () => {
         isGameBlocked = false
       }, ANIMATION_TIME)
     }
+
+    return setGameBoard(boardAfterHumanMove)
   }
 
   return (
