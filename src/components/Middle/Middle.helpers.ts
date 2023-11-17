@@ -2,7 +2,8 @@ import { GameItemType } from '../GameItem/GameItem.types'
 import { WINNING_POINT_COMBINATIONS } from './Middle.const'
 
 export type GameBoardTypes = Array<{ id: number; type: GameItemType }>
-type setBoardTypes = (gameBoard: GameBoardTypes) => void
+export type IdOfWinningCombination = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+type SetBoardTypes = (gameBoard: GameBoardTypes) => void
 
 export const humanMove = (gameBoard: GameBoardTypes, id: number) => {
   return gameBoard.map((item, idx) => {
@@ -58,15 +59,28 @@ export const getCircleSquaresIdInBoard = (gameBoard: GameBoardTypes) => {
     })
 }
 
-export const checkIfPlayerWonTheGame = (crossIdArray: Array<number>) => {
+export const checkIfPlayerWonTheGame = (idsArray: Array<number>) => {
   let hasAllElements: boolean = false
-  if (crossIdArray.length < 3) return false
+  if (idsArray.length < 3) return false
 
   WINNING_POINT_COMBINATIONS.map((item) => item.combination).forEach((array) => {
-    if (!hasAllElements) hasAllElements = array.every((elem) => crossIdArray.includes(elem))
+    if (!hasAllElements) hasAllElements = array.every((elem) => idsArray.includes(elem))
   })
 
   return hasAllElements
+}
+
+export const getIdOfWinningCombination = (idsArray: Array<number>) => {
+  let hasAllElements: boolean = false
+  let id: number = 0
+
+  WINNING_POINT_COMBINATIONS.map((item, idx) => {
+    if (!hasAllElements) {
+      hasAllElements = item.combination.every((elem) => idsArray.includes(elem))
+      id = idx
+    }
+  })
+  return id
 }
 
 export const getStyleOfLine = (id: number) => WINNING_POINT_COMBINATIONS[id]

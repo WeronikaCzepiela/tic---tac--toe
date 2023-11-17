@@ -8,9 +8,11 @@ import {
   emptySquaresOnTheBoard,
   getCircleSquaresIdInBoard,
   getCrossSquaresIdInBoard,
+  getIdOfWinningCombination,
   getSquareIdToMark,
   getStyleOfLine,
   humanMove,
+  IdOfWinningCombination,
 } from './Middle.helpers'
 import { ANIMATION_TIME, gameBoardMock } from './Middle.const'
 
@@ -18,12 +20,15 @@ let isGameBlocked = false
 
 export const Middle = () => {
   const [gameBoard, setGameBoard] = useState(gameBoardMock)
-
+  let winningIdCombination = 0
   const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
     isGameBlocked = true
     const boardAfterHumanMove = humanMove(gameBoard, fieldId)
     if (checkIfPlayerWonTheGame(getCrossSquaresIdInBoard(boardAfterHumanMove))) {
+      winningIdCombination = getIdOfWinningCombination(
+        getCrossSquaresIdInBoard(boardAfterHumanMove),
+      )
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
         isGameBlocked = false
@@ -45,6 +50,10 @@ export const Middle = () => {
         setGameBoard(boardAfterComputerMove)
 
         if (checkIfPlayerWonTheGame(getCircleSquaresIdInBoard(boardAfterComputerMove))) {
+          winningIdCombination = getIdOfWinningCombination(
+            getCircleSquaresIdInBoard(boardAfterComputerMove),
+          )
+
           setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
         }
         isGameBlocked = false
@@ -54,7 +63,6 @@ export const Middle = () => {
     if (!emptySquaresOnTheBoard(boardAfterComputerMove).length) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
-        console.log(emptySquaresOnTheBoard(boardAfterComputerMove).length)
         isGameBlocked = false
       }, ANIMATION_TIME)
     }
@@ -69,10 +77,13 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
-      {/*<div*/}
-      {/*  className={'line'}*/}
-      {/*  style={{ transform: getStyleOfLine(3).transform, width: getStyleOfLine(3).width }}*/}
-      {/*/>*/}
+      <div
+        className={'line'}
+        style={{
+          transform: getStyleOfLine(winningIdCombination).transform,
+          width: getStyleOfLine(winningIdCombination).width,
+        }}
+      />
     </MiddleStyled>
   )
 }
