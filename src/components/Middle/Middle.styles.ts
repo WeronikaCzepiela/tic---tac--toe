@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const MiddleStyled = styled.header`
   display: flex;
   justify-content: center;
-  align-items: center;
+  //align-items: center;
 
   .container {
     display: grid;
@@ -20,11 +20,11 @@ export const MiddleStyled = styled.header`
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  .line {
-    position: absolute;
-    justify-content: center;
-    height: 5px;
-    background-color: #fa7f08;
-    border-radius: 5px;
-    opacity: 0.7;
+  //.line {
+  //  position: absolute;
+  //  justify-content: center;
+  //  height: 5px;
+  //  background-color: #fa7f08;
+  //  border-radius: 5px;
+  //  opacity: 0.7;
 `

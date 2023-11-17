@@ -81,6 +81,7 @@ export const Middle = () => {
         ))}
       </div>
       {isSomeoneWon && (
+        // <Line id={2} />
         <div
           className={'line'}
           style={{
