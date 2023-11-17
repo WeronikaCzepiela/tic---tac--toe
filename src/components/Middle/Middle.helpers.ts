@@ -1,9 +1,11 @@
 import { GameItemType } from '../GameItem/GameItem.types'
 import { WINNING_POINT_COMBINATIONS } from './Middle.const'
+import React from 'react'
 
 export type GameBoardTypes = Array<{ id: number; type: GameItemType }>
 export type IdOfWinningCombination = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 type SetBoardTypes = (gameBoard: GameBoardTypes) => void
+type SetIsSomeoneWonTypes = React.Dispatch<React.SetStateAction<boolean>>
 
 export const humanMove = (gameBoard: GameBoardTypes, id: number) => {
   return gameBoard.map((item, idx) => {
@@ -84,3 +86,8 @@ export const getIdOfWinningCombination = (idsArray: Array<number>) => {
 }
 
 export const getStyleOfLine = (id: number) => WINNING_POINT_COMBINATIONS[id]
+
+export const resetTheGame = (
+  setGameBoard: SetBoardTypes,
+  setIsSomeoneWon: SetIsSomeoneWonTypes,
+) => (setGameBoard(createNewGameBoard()), setIsSomeoneWon(false))

@@ -12,7 +12,7 @@ import {
   getSquareIdToMark,
   getStyleOfLine,
   humanMove,
-  IdOfWinningCombination,
+  resetTheGame,
 } from './Middle.helpers'
 import { ANIMATION_TIME, gameBoardMock } from './Middle.const'
 
@@ -20,16 +20,19 @@ let isGameBlocked = false
 
 export const Middle = () => {
   const [gameBoard, setGameBoard] = useState(gameBoardMock)
-  let winningIdCombination = 0
+  const [isSomeoneWon, setIsSomeoneWon] = useState(false)
+  const [idOfWinningCombination, setIdOfWinningCombination] = useState(0)
+
   const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
     isGameBlocked = true
     const boardAfterHumanMove = humanMove(gameBoard, fieldId)
     const idsOfCrossSquares = getCrossSquaresIdInBoard(boardAfterHumanMove)
     if (checkIfPlayerWonTheGame(idsOfCrossSquares)) {
-      winningIdCombination = getIdOfWinningCombination(idsOfCrossSquares)
+      setIsSomeoneWon(true)
+      setIdOfWinningCombination(getIdOfWinningCombination(idsOfCrossSquares))
       setTimeout(() => {
-        setGameBoard(createNewGameBoard())
+        resetTheGame(setGameBoard, setIsSomeoneWon)
         isGameBlocked = false
       }, ANIMATION_TIME)
 
@@ -38,7 +41,7 @@ export const Middle = () => {
 
     const emptyElementsInBoard = emptySquaresOnTheBoard(boardAfterHumanMove)
     let boardAfterComputerMove = boardAfterHumanMove
-    const idsOfCircleSquares = getCircleSquaresIdInBoard(boardAfterComputerMove)
+
     if (emptyElementsInBoard.length) {
       setGameBoard(boardAfterHumanMove)
 
@@ -48,11 +51,11 @@ export const Middle = () => {
           getSquareIdToMark(emptyElementsInBoard),
         )
         setGameBoard(boardAfterComputerMove)
-
+        let idsOfCircleSquares = getCircleSquaresIdInBoard(boardAfterComputerMove)
         if (checkIfPlayerWonTheGame(idsOfCircleSquares)) {
-          winningIdCombination = getIdOfWinningCombination(idsOfCircleSquares)
-
-          setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
+          setIdOfWinningCombination(getIdOfWinningCombination(idsOfCircleSquares))
+          setIsSomeoneWon(true)
+          setTimeout(() => resetTheGame(setGameBoard, setIsSomeoneWon), ANIMATION_TIME)
         }
         isGameBlocked = false
       }, ANIMATION_TIME)
@@ -61,6 +64,7 @@ export const Middle = () => {
     if (!emptySquaresOnTheBoard(boardAfterComputerMove).length) {
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
+        setIsSomeoneWon(false)
         isGameBlocked = false
       }, ANIMATION_TIME)
     }
@@ -75,13 +79,15 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
-      <div
-        className={'line'}
-        style={{
-          transform: getStyleOfLine(winningIdCombination).transform,
-          width: getStyleOfLine(winningIdCombination).width,
-        }}
-      />
+      {isSomeoneWon && (
+        <div
+          className={'line'}
+          style={{
+            transform: getStyleOfLine(idOfWinningCombination).transform,
+            width: getStyleOfLine(idOfWinningCombination).width,
+          }}
+        />
+      )}
     </MiddleStyled>
   )
 }
