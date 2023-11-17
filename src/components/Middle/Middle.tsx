@@ -25,10 +25,9 @@ export const Middle = () => {
     if (isGameBlocked) return
     isGameBlocked = true
     const boardAfterHumanMove = humanMove(gameBoard, fieldId)
-    if (checkIfPlayerWonTheGame(getCrossSquaresIdInBoard(boardAfterHumanMove))) {
-      winningIdCombination = getIdOfWinningCombination(
-        getCrossSquaresIdInBoard(boardAfterHumanMove),
-      )
+    const idsOfCrossSquares = getCrossSquaresIdInBoard(boardAfterHumanMove)
+    if (checkIfPlayerWonTheGame(idsOfCrossSquares)) {
+      winningIdCombination = getIdOfWinningCombination(idsOfCrossSquares)
       setTimeout(() => {
         setGameBoard(createNewGameBoard())
         isGameBlocked = false
@@ -39,6 +38,7 @@ export const Middle = () => {
 
     const emptyElementsInBoard = emptySquaresOnTheBoard(boardAfterHumanMove)
     let boardAfterComputerMove = boardAfterHumanMove
+    const idsOfCircleSquares = getCircleSquaresIdInBoard(boardAfterComputerMove)
     if (emptyElementsInBoard.length) {
       setGameBoard(boardAfterHumanMove)
 
@@ -49,10 +49,8 @@ export const Middle = () => {
         )
         setGameBoard(boardAfterComputerMove)
 
-        if (checkIfPlayerWonTheGame(getCircleSquaresIdInBoard(boardAfterComputerMove))) {
-          winningIdCombination = getIdOfWinningCombination(
-            getCircleSquaresIdInBoard(boardAfterComputerMove),
-          )
+        if (checkIfPlayerWonTheGame(idsOfCircleSquares)) {
+          winningIdCombination = getIdOfWinningCombination(idsOfCircleSquares)
 
           setTimeout(() => setGameBoard(createNewGameBoard()), ANIMATION_TIME)
         }
