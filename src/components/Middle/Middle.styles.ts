@@ -26,5 +26,5 @@ export const MiddleStyled = styled.header`
     height: 5px;
     background-color: #fa7f08;
     border-radius: 5px;
-  }
+    opacity: 0.7;
 `
