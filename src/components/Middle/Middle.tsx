@@ -15,7 +15,6 @@ import {
   resetTheGame,
 } from './Middle.helpers'
 import { ANIMATION_TIME, gameBoardMock } from './Middle.const'
-import { Line } from '../Line/Line'
 
 let isGameBlocked = false
 
