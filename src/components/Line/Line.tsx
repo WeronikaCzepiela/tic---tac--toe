@@ -1,11 +1,11 @@
 import { getStyleOfLine } from '../Middle/Middle.helpers'
 import { LineStyled } from './Line.styles'
 
-interface LineTypes {
+interface LineType {
   id: number
 }
 
-export const Line = ({ id }: LineTypes) => {
+export const Line = ({ id }: LineType) => {
   console.log(getStyleOfLine(id))
   return (
     <LineStyled>
