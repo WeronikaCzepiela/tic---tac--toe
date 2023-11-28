@@ -6,7 +6,6 @@ interface LineType {
 }
 
 export const Line = ({ id }: LineType) => {
-  console.log(getStyleOfLine(id))
   return (
     <LineStyled>
       <div
