@@ -15,6 +15,7 @@ import {
   resetTheGame,
 } from './Middle.helpers'
 import { ANIMATION_TIME, gameBoardMock } from './Middle.const'
+import { Line } from '../Line/Line'
 
 let isGameBlocked = false
 
@@ -79,15 +80,17 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
-      {isSomeoneWon && (
-        <div
-          className={'line'}
-          style={{
-            transform: getStyleOfLine(idOfWinningCombination).transform,
-            width: getStyleOfLine(idOfWinningCombination).width,
-          }}
-        />
-      )}
+      {
+        isSomeoneWon && <Line id={idOfWinningCombination} />
+
+        // <div
+        //   className={'line'}
+        //   style={{
+        //     transform: getStyleOfLine(idOfWinningCombination).transform,
+        //     width: getStyleOfLine(idOfWinningCombination).width,
+        //   }}
+        // />
+      }
     </MiddleStyled>
   )
 }
