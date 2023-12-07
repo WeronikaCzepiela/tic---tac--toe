@@ -1,9 +1,6 @@
 import { getStyleOfLine } from '../Middle/Middle.helpers'
 import { LineStyled } from './Line.styles'
-
-interface LineType {
-  id: number
-}
+import { LineType } from './Line.types'
 
 export const Line = ({ id }: LineType) => {
   return (
