@@ -1,7 +1,7 @@
 import { GameItemStyled } from './GameItem.styles'
 import { GameItemType, GameItemTypes } from './GameItem.types'
-import XIcon from '../../image/x.svg'
-import OIcon from '../../image/o.svg'
+import XIcon from '../../assets/image/x.svg'
+import OIcon from '../../assets/image/o.svg'
 
 export const GameItem = ({ id, type, onClick }: GameItemTypes) => {
   const icons = [
