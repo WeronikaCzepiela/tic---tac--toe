@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const HeaderDesktopStyled = styled.header`
   background-color: #393939;
-  width: 320px;
-  height: 100px;
+  width: 430px;
+  height: 128px;
   border-radius: 16px;
   display: flex;
   justify-content: center;
