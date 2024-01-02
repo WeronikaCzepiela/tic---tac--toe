@@ -1,16 +1,14 @@
 import { getStyleOfLine } from '../Middle/Middle.helpers'
 import { LineStyled } from './Line.styles'
-import { LineType } from './Line.types'
+import { LineTypes } from './Line.types'
 
-export const Line = ({ id }: LineType) => {
+export const Line = ({ transform, width }: LineTypes) => {
   return (
-    <LineStyled>
-      <div
-        style={{
-          transform: getStyleOfLine(id).transform,
-          width: getStyleOfLine(id).width,
-        }}
-      />
-    </LineStyled>
+    <LineStyled
+      style={{
+        transform: transform,
+        width: width,
+      }}
+    />
   )
 }

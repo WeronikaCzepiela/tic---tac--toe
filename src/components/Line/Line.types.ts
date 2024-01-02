@@ -1,3 +1,4 @@
-export interface LineType {
-  id: number
+export interface LineTypes {
+  transform: string
+  width: string
 }

@@ -80,17 +80,12 @@ export const Middle = () => {
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
       </div>
-      {
-        isSomeoneWon && <Line id={idOfWinningCombination} />
-
-        // <div
-        //   className={'line'}
-        //   style={{
-        //     transform: getStyleOfLine(idOfWinningCombination).transform,
-        //     width: getStyleOfLine(idOfWinningCombination).width,
-        //   }}
-        // />
-      }
+      {isSomeoneWon && (
+        <Line
+          transform={getStyleOfLine(idOfWinningCombination).transform}
+          width={getStyleOfLine(idOfWinningCombination).width}
+        />
+      )}
     </MiddleStyled>
   )
 }
