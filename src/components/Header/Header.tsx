@@ -1,8 +1,13 @@
-import {HeaderStyled} from "./Header.styles";
+import { DIMENSION, useWindowDimensions } from '../../utils'
+import { HeaderDesktop } from './HeaderDesktop/HeaderDesktop'
+import { HeaderMobile } from './HeaderMobile/HeaderMobile'
 
 export const Header = () => {
-    return (
-    <HeaderStyled>
-        <p>Tic - Tac -Toe</p>
-    </HeaderStyled>
-    )}
+  const { width } = useWindowDimensions()
+  const getCorrectHeader = () => {
+    if (width > DIMENSION) return <HeaderDesktop />
+    return <HeaderMobile />
+  }
+
+  return getCorrectHeader()
+}

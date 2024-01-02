@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const HeaderStyled = styled.header`
+export const HeaderDesktopStyled = styled.header`
   background-color: #393939;
   width: 320px;
   height: 100px;
