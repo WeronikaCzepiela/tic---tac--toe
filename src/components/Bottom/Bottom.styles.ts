@@ -3,22 +3,38 @@ import styled, { css, DefaultTheme } from 'styled-components'
 const BottomVariants = (theme: DefaultTheme, variant = 'mobile') =>
   ({
     mobile: css`
-      background: pink;
+      display: flex;
+      flex-direction: row;
+      font-size: 20px;
+      align-items: center;
     `,
     desktop: css`
-      background: green;
+      width: 100vw;
+      font-size: 31px;
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      padding-right: 38px;
+      p {
+        margin-top: 15px;
+        margin-bottom: 0;
+      }
     `,
   })[variant]
 
 export const BottomStyled = styled.header<{ variant: string }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 20px;
   ${({ theme, variant }) => BottomVariants(theme, variant)}
 
   .icons {
     padding-left: 13px;
     gap: 10px;
+  }
+
+  .icons-desktop {
+    padding-left: 22px;
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    padding-bottom: 15px;
   }
 `

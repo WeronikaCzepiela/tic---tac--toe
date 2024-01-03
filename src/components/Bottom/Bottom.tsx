@@ -11,15 +11,27 @@ export const Bottom = () => {
     return 'mobile'
   }
 
+  const getCorrectWidthOfIcon = () => {
+    if (width > DIMENSION) return 64
+
+    return 40
+  }
+
+  const getCorrectHeightOfIcon = () => {
+    if (width > DIMENSION) return 68
+
+    return 38
+  }
+
   return (
     <BottomStyled variant={getCorrectVariant()}>
       <p>Check my accounts</p>
-      <div className={'icons'}>
+      <div className={`icons ${width > DIMENSION && 'icons-desktop'}`}>
         <a target={'_blank'} href={'https://github.com/WeronikaCzepiela'}>
-          <img src={GitHub} width={40} height={38} />
+          <img src={GitHub} width={getCorrectWidthOfIcon()} height={getCorrectHeightOfIcon()} />
         </a>
         <a target={'_blank'} href={'https://www.linkedin.com/in/--weronika-czepiela/'}>
-          <img src={LinkedIn} width={40} height={38} />
+          <img src={LinkedIn} width={getCorrectWidthOfIcon()} height={getCorrectHeightOfIcon()} />
         </a>
       </div>
     </BottomStyled>
