@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 
 export const MiddleStyled = styled.header`
   display: flex;
@@ -18,5 +18,9 @@ export const MiddleStyled = styled.header`
     border-radius: 8px;
     background-color: #d9d9d9;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .container-desktop {
+    width: 381px;
   }
 `

@@ -16,6 +16,7 @@ import {
 } from './Middle.helpers'
 import { ANIMATION_TIME, gameBoardMock } from './Middle.const'
 import { Line } from '../Line/Line'
+import { DIMENSION, useWindowDimensions } from '../../utils'
 
 let isGameBlocked = false
 
@@ -23,6 +24,8 @@ export const Middle = () => {
   const [gameBoard, setGameBoard] = useState(gameBoardMock)
   const [isSomeoneWon, setIsSomeoneWon] = useState(false)
   const [idOfWinningCombination, setIdOfWinningCombination] = useState(0)
+
+  const { width } = useWindowDimensions()
 
   const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
@@ -75,7 +78,7 @@ export const Middle = () => {
 
   return (
     <MiddleStyled>
-      <div className={'container'}>
+      <div className={`container ${width > DIMENSION && 'container-desktop'}`}>
         {gameBoard.map(({ id, type }, idx) => (
           <GameItem type={type} id={id} key={idx} onClick={onItemClick} />
         ))}
