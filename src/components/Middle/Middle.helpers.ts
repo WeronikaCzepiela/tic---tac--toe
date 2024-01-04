@@ -99,7 +99,11 @@ export const getIdOfWinningCombination = (idsArray: Array<number>, isOnMobile: b
   return id
 }
 
-export const getStyleOfLine = (id: number) => WINNING_POINT_COMBINATIONS_MOBILE[id]
+export const getStyleOfLine = (id: number, isOnMobile: boolean) => {
+  if (isOnMobile) return WINNING_POINT_COMBINATIONS_MOBILE[id]
+
+  return WINNING_POINT_COMBINATIONS_DESKTOP[id]
+}
 
 export const resetTheGame = (
   setGameBoard: SetBoardTypes,

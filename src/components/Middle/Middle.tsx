@@ -86,8 +86,8 @@ export const Middle = () => {
       </div>
       {isSomeoneWon && (
         <Line
-          transform={getStyleOfLine(idOfWinningCombination).transform}
-          width={getStyleOfLine(idOfWinningCombination).width}
+          transform={getStyleOfLine(idOfWinningCombination, isOnMobile).transform}
+          width={getStyleOfLine(idOfWinningCombination, isOnMobile).width}
         />
       )}
     </MiddleStyled>
