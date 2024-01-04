@@ -6,7 +6,6 @@ import {
 import React from 'react'
 
 export type GameBoardTypes = Array<{ id: number; type: GameItemType }>
-// export type IdOfWinningCombination = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 type SetBoardTypes = (gameBoard: GameBoardTypes) => void
 type SetIsSomeoneWonTypes = React.Dispatch<React.SetStateAction<boolean>>
 
