@@ -35,7 +35,7 @@ export const Middle = () => {
     const idsOfCrossSquares = getCrossSquaresIdInBoard(boardAfterHumanMove)
     if (checkIfPlayerWonTheGame(idsOfCrossSquares, isOnMobile)) {
       setIsSomeoneWon(true)
-      setIdOfWinningCombination(getIdOfWinningCombination(idsOfCrossSquares))
+      setIdOfWinningCombination(getIdOfWinningCombination(idsOfCrossSquares, isOnMobile))
       setTimeout(() => {
         resetTheGame(setGameBoard, setIsSomeoneWon)
         isGameBlocked = false
@@ -58,7 +58,7 @@ export const Middle = () => {
         setGameBoard(boardAfterComputerMove)
         let idsOfCircleSquares = getCircleSquaresIdInBoard(boardAfterComputerMove)
         if (checkIfPlayerWonTheGame(idsOfCircleSquares, isOnMobile)) {
-          setIdOfWinningCombination(getIdOfWinningCombination(idsOfCircleSquares))
+          setIdOfWinningCombination(getIdOfWinningCombination(idsOfCircleSquares, isOnMobile))
           setIsSomeoneWon(true)
           setTimeout(() => resetTheGame(setGameBoard, setIsSomeoneWon), ANIMATION_TIME)
         }
