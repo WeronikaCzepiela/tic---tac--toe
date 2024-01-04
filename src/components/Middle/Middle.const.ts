@@ -1,7 +1,7 @@
 import { GameBoardTypes } from './Middle.helpers'
 import { GameItemType } from '../GameItem/GameItem.types'
 
-export const ANIMATION_TIME = 500
+export const ANIMATION_TIME = 1000
 
 export const WINNING_POINT_COMBINATIONS_MOBILE = [
   {
