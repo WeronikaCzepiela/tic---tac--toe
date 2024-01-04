@@ -26,13 +26,14 @@ export const Middle = () => {
   const [idOfWinningCombination, setIdOfWinningCombination] = useState(0)
 
   const { width } = useWindowDimensions()
+  const isOnMobile = width <= DIMENSION
 
   const onItemClick = (fieldId: number) => {
     if (isGameBlocked) return
     isGameBlocked = true
     const boardAfterHumanMove = humanMove(gameBoard, fieldId)
     const idsOfCrossSquares = getCrossSquaresIdInBoard(boardAfterHumanMove)
-    if (checkIfPlayerWonTheGame(idsOfCrossSquares)) {
+    if (checkIfPlayerWonTheGame(idsOfCrossSquares, isOnMobile)) {
       setIsSomeoneWon(true)
       setIdOfWinningCombination(getIdOfWinningCombination(idsOfCrossSquares))
       setTimeout(() => {
@@ -56,7 +57,7 @@ export const Middle = () => {
         )
         setGameBoard(boardAfterComputerMove)
         let idsOfCircleSquares = getCircleSquaresIdInBoard(boardAfterComputerMove)
-        if (checkIfPlayerWonTheGame(idsOfCircleSquares)) {
+        if (checkIfPlayerWonTheGame(idsOfCircleSquares, isOnMobile)) {
           setIdOfWinningCombination(getIdOfWinningCombination(idsOfCircleSquares))
           setIsSomeoneWon(true)
           setTimeout(() => resetTheGame(setGameBoard, setIsSomeoneWon), ANIMATION_TIME)

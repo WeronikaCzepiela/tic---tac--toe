@@ -1,9 +1,10 @@
 import { GameBoardTypes } from './Middle.helpers'
 import { GameItemType } from '../GameItem/GameItem.types'
+import { useWindowDimensions } from '../../utils'
 
-export const ANIMATION_TIME = 3000
+export const ANIMATION_TIME = 1000
 
-export const WINNING_POINT_COMBINATIONS = [
+export const WINNING_POINT_COMBINATIONS_MOBILE = [
   {
     combination: [0, 1, 2],
     transform: `translateY(-93px)`,
@@ -43,6 +44,49 @@ export const WINNING_POINT_COMBINATIONS = [
     combination: [2, 5, 8],
     transform: `rotate(90deg) translateY(-93px)`,
     width: `330px`,
+  },
+]
+
+export const WINNING_POINT_COMBINATIONS_DESKTOP = [
+  {
+    combination: [0, 1, 2],
+    transform: `translateY(-93px)`,
+    width: `430px`,
+  },
+  {
+    combination: [3, 4, 5],
+    transform: ``,
+    width: `430px`,
+  },
+  {
+    combination: [6, 7, 8],
+    transform: `translateY(93px)`,
+    width: `430px`,
+  },
+  {
+    combination: [0, 4, 8],
+    transform: `rotate(45deg)`,
+    width: `530px`,
+  },
+  {
+    combination: [2, 4, 6],
+    transform: `rotate(-45deg)`,
+    width: `530px`,
+  },
+  {
+    combination: [0, 3, 6],
+    transform: `rotate(90deg) translateY(93px)`,
+    width: `430px`,
+  },
+  {
+    combination: [1, 4, 7],
+    transform: `rotate(90deg)`,
+    width: `430px`,
+  },
+  {
+    combination: [2, 5, 8],
+    transform: `rotate(90deg) translateY(-93px)`,
+    width: `430px`,
   },
 ]
 

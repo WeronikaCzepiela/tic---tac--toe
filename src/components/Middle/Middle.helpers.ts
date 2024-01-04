@@ -1,5 +1,8 @@
 import { GameItemType } from '../GameItem/GameItem.types'
-import { WINNING_POINT_COMBINATIONS } from './Middle.const'
+import {
+  WINNING_POINT_COMBINATIONS_DESKTOP,
+  WINNING_POINT_COMBINATIONS_MOBILE,
+} from './Middle.const'
 import React from 'react'
 
 export type GameBoardTypes = Array<{ id: number; type: GameItemType }>
@@ -61,31 +64,43 @@ export const getCircleSquaresIdInBoard = (gameBoard: GameBoardTypes) => {
     })
 }
 
-export const checkIfPlayerWonTheGame = (idsArray: Array<number>) => {
+export const checkIfPlayerWonTheGame = (idsArray: Array<number>, isOnMobile: boolean) => {
   let hasAllElements: boolean = false
   if (idsArray.length < 3) return false
 
-  WINNING_POINT_COMBINATIONS.map((item) => item.combination).forEach((array) => {
-    if (!hasAllElements) hasAllElements = array.every((elem) => idsArray.includes(elem))
-  })
+  isOnMobile
+    ? WINNING_POINT_COMBINATIONS_MOBILE.map((item) => item.combination).forEach((array) => {
+        if (!hasAllElements) hasAllElements = array.every((elem) => idsArray.includes(elem))
+      })
+    : WINNING_POINT_COMBINATIONS_DESKTOP.map((item) => item.combination).forEach((array) => {
+        if (!hasAllElements) hasAllElements = array.every((elem) => idsArray.includes(elem))
+      })
 
   return hasAllElements
 }
 
-export const getIdOfWinningCombination = (idsArray: Array<number>) => {
+export const getIdOfWinningCombination = (idsArray: Array<number>, isOnMobile: boolean) => {
   let hasAllElements: boolean = false
   let id: number = 0
 
-  WINNING_POINT_COMBINATIONS.map((item, idx) => {
-    if (!hasAllElements) {
-      hasAllElements = item.combination.every((elem) => idsArray.includes(elem))
-      id = idx
-    }
-  })
+  isOnMobile
+    ? WINNING_POINT_COMBINATIONS_MOBILE.map((item, idx) => {
+        if (!hasAllElements) {
+          hasAllElements = item.combination.every((elem) => idsArray.includes(elem))
+          id = idx
+        }
+      })
+    : WINNING_POINT_COMBINATIONS_DESKTOP.map((item, idx) => {
+        if (!hasAllElements) {
+          hasAllElements = item.combination.every((elem) => idsArray.includes(elem))
+          id = idx
+        }
+      })
+
   return id
 }
 
-export const getStyleOfLine = (id: number) => WINNING_POINT_COMBINATIONS[id]
+export const getStyleOfLine = (id: number) => WINNING_POINT_COMBINATIONS_MOBILE[id]
 
 export const resetTheGame = (
   setGameBoard: SetBoardTypes,
