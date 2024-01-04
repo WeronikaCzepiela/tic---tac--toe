@@ -66,12 +66,12 @@ export const WINNING_POINT_COMBINATIONS_DESKTOP = [
   {
     combination: [0, 4, 8],
     transform: `rotate(45deg)`,
-    width: `630px`,
+    width: `6300px`,
   },
   {
     combination: [2, 4, 6],
     transform: `rotate(-45deg)`,
-    width: `630px`,
+    width: `6300px`,
   },
   {
     combination: [0, 3, 6],
