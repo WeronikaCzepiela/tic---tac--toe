@@ -1,8 +1,7 @@
 import { GameBoardTypes } from './Middle.helpers'
 import { GameItemType } from '../GameItem/GameItem.types'
-import { useWindowDimensions } from '../../utils'
 
-export const ANIMATION_TIME = 1000
+export const ANIMATION_TIME = 500
 
 export const WINNING_POINT_COMBINATIONS_MOBILE = [
   {
@@ -50,7 +49,7 @@ export const WINNING_POINT_COMBINATIONS_MOBILE = [
 export const WINNING_POINT_COMBINATIONS_DESKTOP = [
   {
     combination: [0, 1, 2],
-    transform: `translateY(-93px)`,
+    transform: `translateY(-127px)`,
     width: `430px`,
   },
   {
@@ -60,7 +59,7 @@ export const WINNING_POINT_COMBINATIONS_DESKTOP = [
   },
   {
     combination: [6, 7, 8],
-    transform: `translateY(93px)`,
+    transform: `translateY(127px)`,
     width: `430px`,
   },
   {
@@ -75,7 +74,7 @@ export const WINNING_POINT_COMBINATIONS_DESKTOP = [
   },
   {
     combination: [0, 3, 6],
-    transform: `rotate(90deg) translateY(93px)`,
+    transform: `rotate(90deg) translateY(127px)`,
     width: `430px`,
   },
   {
@@ -85,7 +84,7 @@ export const WINNING_POINT_COMBINATIONS_DESKTOP = [
   },
   {
     combination: [2, 5, 8],
-    transform: `rotate(90deg) translateY(-93px)`,
+    transform: `rotate(90deg) translateY(-127px)`,
     width: `430px`,
   },
 ]
