@@ -8,6 +8,10 @@ In this application, the user can play a game of tic-tac-toe with the computer. 
 
 ## Features
 
+
+
+##  Application layout
+
 ## How to run?
 
 `npm run start` to start project 
