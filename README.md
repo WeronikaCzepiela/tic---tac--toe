@@ -1,6 +1,6 @@
 # Tic--Tac--Toe
 
-It's web application with popular game: Tic-Tac-Toe. 
+This is a web application featuring the popular 'Tic Tac Toe' game.
 
 # Features
 
