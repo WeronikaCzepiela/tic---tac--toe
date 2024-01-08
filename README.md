@@ -18,6 +18,22 @@ In this application, the user can play a game of tic-tac-toe with the computer. 
 
 ##  Application layout
 
+* Web application at the beginning and during the game.
+
+<img src="./images/desktop_1.png">
+
+* Web application when the game is over
+
+<img src="./images/desktop_2.png">
+
+* Mobile version at the beginning and end of the game
+
+<img src="./images/mobile_1.png">
+
+* Mobile version during and at the end of the game.
+
+<img src="./images/mobile_2.png">
+
 ## How to run?
 
 `npm run start` to start project 
