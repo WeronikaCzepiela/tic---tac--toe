@@ -2,7 +2,9 @@
 
 This is a web application featuring the popular 'Tic Tac Toe' game.
 
-# Features
+## Description
+
+## Features
 
 ## How to run?
 
