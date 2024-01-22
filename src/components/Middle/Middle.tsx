@@ -21,7 +21,7 @@ import { DIMENSION, useWindowDimensions } from '../../utils'
 let isGameBlocked = false
 
 export const Middle = () => {
-  const [gameBoard, setGameBoard] = useState(gameBoardMock)
+  const [gameBoard, setGameBoard] = useState(createNewGameBoard())
   const [isSomeoneWon, setIsSomeoneWon] = useState(false)
   const [idOfWinningCombination, setIdOfWinningCombination] = useState(0)
 
